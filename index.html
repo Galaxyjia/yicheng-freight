@@ -862,7 +862,7 @@
     <header class="navbar">
         <div class="container nav-inner">
             <div class="logo-area">
-                <img class="logo-icon" src="logo.jpg" alt="以誠貨運" data-i18n-placeholder="nav.logo_alt">
+                <img class="logo-icon" src="logo.jpg" alt="以誠貨運" data-i18n-alt="nav.logo_alt">
                 <div>
                     <div class="logo-text" data-i18n="nav.company">上海以誠貨運</div>
                     <span class="logo-sub" data-i18n="nav.tagline">兩岸物流 · 門到門</span>
@@ -897,7 +897,7 @@
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="hero-badge" data-i18n="hero.badge"><i class="fas fa-ship" style="margin-right: 6px;"></i> 兩岸多渠道物流 · 專業貨代</span>
+                <span class="hero-badge"><i class="fas fa-ship" style="margin-right: 6px;"></i> <span data-i18n="hero.badge">兩岸多渠道物流 · 專業貨代</span></span>
                 <h1>
                     <span data-i18n="hero.slogan1">以誠博信</span> <br>
                     <span class="hero-highlight" data-i18n="hero.slogan2">厚德載物</span>
@@ -1067,17 +1067,17 @@
             <h3><i class="fas fa-plus-circle" style="color:#004d99; margin-right: 8px;"></i> <span data-i18n="value.title">增值服務</span></h3>
             <p data-i18n="value.subtitle">提供一站式供應鏈配套，滿足多樣化貿易需求</p>
             <div class="value-grid">
-                <span class="value-item" data-i18n="value.export_decl"><i class="fas fa-file-export"></i> 出口報關</span>
-                <span class="value-item" data-i18n="value.import_decl"><i class="fas fa-file-import"></i> 進口報關</span>
-                <span class="value-item" data-i18n="value.cod"><i class="fas fa-coins"></i> 代收貨款</span>
-                <span class="value-item" data-i18n="value.prepay"><i class="fas fa-hand-holding-usd"></i> 代付貨款</span>
-                <span class="value-item" data-i18n="value.inspection"><i class="fas fa-flask"></i> 代做運輸檢測報告</span>
-                <span class="value-item" data-i18n="value.freight_collect"><i class="fas fa-truck"></i> 運費到付</span>
-                <span class="value-item" data-i18n="value.check"><i class="fas fa-search"></i> 貨物查驗</span>
-                <span class="value-item" data-i18n="value.relabel"><i class="fas fa-tag"></i> 更換標籤</span>
-                <span class="value-item" data-i18n="value.package"><i class="fas fa-box"></i> 貨物包裝</span>
-                <span class="value-item" data-i18n="value.consolidate"><i class="fas fa-pallet"></i> 貨物集運</span>
-                <span class="value-item" data-i18n="value.warehouse"><i class="fas fa-warehouse"></i> 國內倉儲分撥</span>
+                <span class="value-item"><i class="fas fa-file-export"></i> <span data-i18n="value.export_decl">出口報關</span></span>
+                <span class="value-item"><i class="fas fa-file-import"></i> <span data-i18n="value.import_decl">進口報關</span></span>
+                <span class="value-item"><i class="fas fa-coins"></i> <span data-i18n="value.cod">代收貨款</span></span>
+                <span class="value-item"><i class="fas fa-hand-holding-usd"></i> <span data-i18n="value.prepay">代付貨款</span></span>
+                <span class="value-item"><i class="fas fa-flask"></i> <span data-i18n="value.inspection">代做運輸檢測報告</span></span>
+                <span class="value-item"><i class="fas fa-truck"></i> <span data-i18n="value.freight_collect">運費到付</span></span>
+                <span class="value-item"><i class="fas fa-search"></i> <span data-i18n="value.check">貨物查驗</span></span>
+                <span class="value-item"><i class="fas fa-tag"></i> <span data-i18n="value.relabel">更換標籤</span></span>
+                <span class="value-item"><i class="fas fa-box"></i> <span data-i18n="value.package">貨物包裝</span></span>
+                <span class="value-item"><i class="fas fa-pallet"></i> <span data-i18n="value.consolidate">貨物集運</span></span>
+                <span class="value-item"><i class="fas fa-warehouse"></i> <span data-i18n="value.warehouse">國內倉儲分撥</span></span>
             </div>
         </div>
 
@@ -1186,8 +1186,103 @@
          */
         var T = {
             'zh-TW': {
-                // JS 動態提示文案
-                _js: {
+                'meta.title': '上海以誠貨運代理有限公司 · 兩岸物流專家',
+                'nav.company': '上海以誠貨運',
+                'nav.tagline': '兩岸物流 · 門到門',
+                'nav.home': '首頁',
+                'nav.product': '產品與服務',
+                'nav.value': '增值服務',
+                'nav.intl': '國際專線',
+                'nav.about': '關於我們',
+                'nav.check_rate': '查運價',
+                'nav.send': '我要寄件',
+                'nav.logo_alt': '以誠貨運',
+                'hero.badge': '兩岸多渠道物流 · 專業貨代',
+                'hero.slogan1': '以誠博信',
+                'hero.slogan2': '厚德載物',
+                'hero.desc': '上海以誠貨運代理有限公司成立於2010年，專注兩岸物流服務。提供空運快件、海運快件、小三通、正貿普貨等多元化門到門解決方案，時效穩定，清關便捷。',
+                'hero.days': '天',
+                'hero.service.air': '空運快件',
+                'hero.service.sea': '海運快件',
+                'hero.service.minisan': '小三通 / 正貿海運',
+                'contact.quick': '快速聯繫',
+                'contact.person_label': '聯繫人',
+                'contact.phone_label': '電話 / 微信同號',
+                'contact.email_label': '郵箱',
+                'track.title': '國際快遞查詢',
+                'track.subtitle': '選擇快遞公司，輸入運單號，一鍵查詢最新物流軌跡',
+                'track.carrier.fedex': '聯邦快遞',
+                'track.carrier.ups': 'UPS 快遞',
+                'track.carrier.dhl': 'DHL 快遞',
+                'track.carrier.ems': 'EMS 特快專遞',
+                'track.placeholder': '請輸入運單號',
+                'track.button': '查詢物流',
+                'track.hint': '查詢結果將通過快遞100跳轉至官方物流頁面 · 支援 FedEx / UPS / DHL / EMS 國際運單',
+                'service.title': '核心物流服務',
+                'service.subtitle': '門到門 / 門到港 / 港到門 / 港到港，靈活定制',
+                'service.tag.dom': '門至門',
+                'service.tag.multi': '門/港多種',
+                'service.tag.east': '華東出口',
+                'service.card1.title': '空運快件',
+                'service.card1.time': '時效 2—4 工作日',
+                'service.card1.f1': '快速清關，全程追蹤',
+                'service.card1.f2': '適合高價值、緊急貨物',
+                'service.card2.title': '海運快件',
+                'service.card2.time': '時效 5—8 工作日',
+                'service.card2.f1': '經濟高效，艙位保證',
+                'service.card2.f2': '適合大宗普貨',
+                'service.card3.title': '小三通海運包清',
+                'service.card3.time': '時效 10—12 工作日',
+                'service.card3.f1': '包清關，省心省力',
+                'service.card3.f2': '兩岸專線特惠',
+                'service.card4.title': '正貿普貨空運',
+                'service.card4.time': '時效 3—5 工作日',
+                'service.card4.f1': '門至門 / 門至港 / 港至門 / 港至港',
+                'service.card4.f2': '正式報關，合規可靠',
+                'service.card5.title': '正貿普貨海運',
+                'service.card5.time': '時效 10—12 工作日',
+                'service.card5.f1': '門至門 / 門至港 / 港至門 / 港至港',
+                'service.card5.f2': '普貨進出口首選',
+                'service.card6.title': '國際快遞代理',
+                'service.card6.time': 'DHL / UPS / FedEx / TNT / EMS',
+                'service.card6.f1': '華東地區出口優惠',
+                'service.card6.f2': '直送國外客戶手中',
+                'value.title': '增值服務',
+                'value.subtitle': '提供一站式供應鏈配套，滿足多樣化貿易需求',
+                'value.export_decl': '出口報關',
+                'value.import_decl': '進口報關',
+                'value.cod': '代收貨款',
+                'value.prepay': '代付貨款',
+                'value.inspection': '代做運輸檢測報告',
+                'value.freight_collect': '運費到付',
+                'value.check': '貨物查驗',
+                'value.relabel': '更換標籤',
+                'value.package': '貨物包裝',
+                'value.consolidate': '貨物集運',
+                'value.warehouse': '國內倉儲分撥',
+                'intl.agent.title': '國際快遞代理',
+                'intl.agent.desc': '經華東地區出口的 DHL、UPS、FedEx、TNT、EMS 國際快件，享受協議折扣，可上門取件。',
+                'intl.sea.title': '東南亞專線',
+                'intl.sea.desc': '日本、韓國、新加坡、馬來西亞、泰國、緬甸、越南等國家專線快件，不經過第三地，直送客戶。',
+                'intl.country.jp': '日本',
+                'intl.country.kr': '韓國',
+                'intl.country.sg': '新加坡',
+                'intl.country.my': '馬來西亞',
+                'intl.country.th': '泰國',
+                'intl.country.mm': '緬甸',
+                'intl.country.vn': '越南',
+                'philosophy.title': '以誠博信 · 厚德載物',
+                'philosophy.sub': '—— 上海以誠貨運代理有限公司 秉承的服務理念',
+                'contact.title': '聯繫我們',
+                'contact.wechat': '微信',
+                'contact.biz': '業務聯繫人',
+                'contact.title_person': '資深貨運顧問',
+                'contact.mobile': '手機 / 微信',
+                'contact.hours': '服務時間',
+                'contact.hours_val': '週一至週六 9:00-18:00',
+                'footer.copyright': '© 2025 上海以誠貨運代理有限公司 ｜ 兩岸物流 · 專業貨代 ｜ 滬ICP備XXXXXXXX號',
+                'footer.note': '本頁面為參考設計，資訊以實際官方為準。',
+                '_js': {
                     track_empty: '請輸入運單號',
                     track_short: '運單號長度不足',
                     track_invalid: '運單號格式不正確'
