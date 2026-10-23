@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海以诚货运代理有限公司 · 两岸物流专家</title>
+    <!-- Font Awesome 5 图标库 (用于图标装饰) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f5f8fc;
+            color: #1e2b3c;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 顶部导航 (参考德邦风格) */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: #004d99;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            color: #002856;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #5b6f87;
+            display: block;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+            color: #1e2b3c;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #004d99;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-outline {
+            border: 1px solid #004d99;
+            background: white;
+            color: #004d99;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: default;
+            transition: all 0.2s;
+        }
+
+        .btn-solid {
+            background: #004d99;
+            border: 1px solid #004d99;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: default;
+        }
+
+        /* 主视觉区域 */
+        .hero {
+            padding: 48px 0 32px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0fa 100%);
+            border-bottom: 1px solid #d9e5f0;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1 1 320px;
+        }
+
+        .hero-badge {
+            background: #d4e6ff;
+            color: #004d99;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.6rem;
+            line-height: 1.2;
+            font-weight: 800;
+            color: #0a1e33;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-highlight {
+            color: #004d99;
+            border-bottom: 3px solid #9bc0e8;
+            display: inline-block;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #3d556b;
+            margin-bottom: 28px;
+            max-width: 550px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #004d99;
+            line-height: 1.2;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: #5b6f87;
+        }
+
+        .hero-card {
+            flex: 0 0 340px;
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 20px 35px -8px rgba(0, 50, 100, 0.15);
+            border: 1px solid rgba(0, 77, 153, 0.1);
+            margin-left: auto;
+        }
+
+        .hero-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-card h3 i {
+            color: #004d99;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .contact-icon {
+            background: #ecf3fc;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #004d99;
+            font-size: 1.2rem;
+        }
+
+        .contact-detail p:first-child {
+            font-size: 0.75rem;
+            color: #6b7f96;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-detail p:last-child {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0a1e33;
+        }
+
+        /* 主要服务区域 */
+        .section-title {
+            text-align: center;
+            margin: 56px 0 28px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a1e33;
+        }
+
+        .section-title p {
+            color: #5b6f87;
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin: 28px 0 16px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e5eef7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 30px -8px rgba(0, 70, 140, 0.12);
+            border-color: #b8d1ea;
+        }
+
+        .service-icon {
+            background: #e8f1fc;
+            color: #004d99;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0a1e33;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: #e1efff;
+            color: #004d99;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .service-card ul li {
+            font-size: 0.85rem;
+            color: #3d556b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-card ul li i {
+            color: #004d99;
+            font-size: 0.7rem;
+            width: 14px;
+        }
+
+        /* 增值服务条 */
+        .value-added {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 36px 32px;
+            margin: 48px 0 24px;
+            border: 1px solid #e0ecf9;
+            box-shadow: 0 10px 25px -10px rgba(0, 60, 120, 0.08);
+        }
+
+        .value-added h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0a1e33;
+        }
+
+        .value-added > p {
+            color: #5b6f87;
+            margin-bottom: 28px;
+        }
+
+        .value-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+        }
+
+        .value-item {
+            background: #f2f8ff;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #004d99;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #d1e3f5;
+        }
+
+        .value-item i {
+            font-size: 0.9rem;
+        }
+
+        /* 国际与专线 */
+        .intl-section {
+            display: flex;
+            gap: 32px;
+            margin: 48px 0;
+            flex-wrap: wrap;
+        }
+
+        .intl-left {
+            flex: 1 1 300px;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px;
+            border: 1px solid #e0ecf9;
+        }
+
+        .intl-left h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .intl-left p {
+            color: #3d556b;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .brand-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 16px;
+            font-weight: 600;
+            color: #004d99;
+            font-size: 1.1rem;
+        }
+
+        .brand-logos span {
+            background: #ecf3fc;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+
+        .intl-right {
+            flex: 1 1 300px;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px;
+            border: 1px solid #e0ecf9;
+        }
+
+        .intl-right h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .country-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            margin-top: 16px;
+        }
+
+        .country-list span {
+            background: #f2f8ff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #1e2b3c;
+            border: 1px solid #d9e5f0;
+        }
+
+        /* 理念与联系 */
+        .philosophy {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0a1e33;
+            color: white;
+            border-radius: 40px;
+            margin: 60px 0 40px;
+        }
+
+        .philosophy h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .philosophy p {
+            font-size: 1.2rem;
+            color: #c9d9e9;
+            font-style: italic;
+        }
+
+        /* 联系卡片区域 (单页底部) */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px;
+            border: 1px solid #e0ecf9;
+            margin-bottom: 48px;
+        }
+
+        .contact-info-block {
+            flex: 2 1 400px;
+        }
+
+        .contact-info-block h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .info-line i {
+            width: 24px;
+            color: #004d99;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .info-line span {
+            font-size: 0.95rem;
+            color: #2f4157;
+            word-break: break-word;
+        }
+
+        .contact-person {
+            background: #f5f9ff;
+            border-radius: 20px;
+            padding: 24px;
+            flex: 1 1 260px;
+        }
+
+        .contact-person h4 {
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            color: #0a1e33;
+            border-left: 4px solid #004d99;
+            padding-left: 12px;
+        }
+
+        .contact-person .contact-row {
+            margin-bottom: 16px;
+        }
+
+        /* 简单页脚 */
+        .footer {
+            padding: 24px 0;
+            border-top: 1px solid #d9e5f0;
+            color: #6b7f96;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* 移动端调整 */
+        @media (max-width: 800px) {
+            .hero-card {
+                margin-left: 0;
+                flex: 1 1 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-inner {
+                justify-content: space-between;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .value-added {
+                padding: 24px 20px;
+            }
+
+            .philosophy h2 {
+                font-size: 1.4rem;
+            }
+
+            .philosophy p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-section {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航栏，参考德邦顶部 -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <div class="logo-area">
+                <div class="logo-icon">诚</div>
+                <div>
+                    <div class="logo-text">以诚货运</div>
+                    <span class="logo-sub">两岸物流 · 门到门</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">产品与服务</a>
+                <a href="#">增值服务</a>
+                <a href="#">国际专线</a>
+                <a href="#">关于我们</a>
+            </div>
+            <div class="nav-actions">
+                <span class="btn-outline">查运价</span>
+                <span class="btn-solid">我要寄件</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主视觉区域 展示公司定位 + 联系方式卡片 -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="hero-badge"><i class="fas fa-ship" style="margin-right: 6px;"></i> 两岸多渠道物流 · 专业货代</span>
+                <h1>
+                    以诚博信 <br>
+                    <span class="hero-highlight">厚德载物</span>
+                </h1>
+                <p class="hero-desc">
+                    上海以诚货运代理有限公司成立于2010年，专注两岸物流服务。提供空运快件、海运快件、小三通、正贸普货等多元化门到门解决方案，时效稳定，清关便捷。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>2-4<span style="font-size:1rem;">天</span></h3>
+                        <p>空运快件</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>5-8<span style="font-size:1rem;">天</span></h3>
+                        <p>海运快件</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10-12<span style="font-size:1rem;">天</span></h3>
+                        <p>小三通/正贸海运</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 悬浮联系卡片，显示主要联系人 -->
+            <div class="hero-card">
+                <h3><i class="fas fa-headset"></i> 快速联系</h3>
+                <div class="contact-row">
+                    <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="contact-detail">
+                        <p>联系人</p>
+                        <p>龚成先生</p>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="contact-detail">
+                        <p>电话 / 微信同号</p>
+                        <p>159-2182-9615</p>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-detail">
+                        <p>邮箱</p>
+                        <p>15921829615@163.com</p>
+                    </div>
+                </div>
+                <div style="font-size:0.8rem; color:#5b6f87; border-top:1px solid #e5eef7; padding-top:14px; margin-top:6px;">
+                    <i class="fas fa-map-pin"></i> 上海市青浦区香花桥街道郊一村718号3栋1层A-01库
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要服务卡片 (根据文档物流方式) -->
+    <div class="container">
+        <div class="section-title">
+            <h2>核心物流服务</h2>
+            <p>门到门 / 门到港 / 港到门 / 港到港，灵活定制</p>
+        </div>
+        <div class="service-grid">
+            <!-- 空运快件 -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-plane"></i></div>
+                <span class="service-tag">门至门</span>
+                <h3>空运快件</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效2—4工作日</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 快速清关，全程追踪</li>
+                    <li><i class="fas fa-check-circle"></i> 适合高价值、紧急货物</li>
+                </ul>
+            </div>
+            <!-- 海运快件 -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-ship"></i></div>
+                <span class="service-tag">门至门</span>
+                <h3>海运快件</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效5—8工作日</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 经济高效，仓位保证</li>
+                    <li><i class="fas fa-check-circle"></i> 适合大宗普货</li>
+                </ul>
+            </div>
+            <!-- 小三通海运包清 -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-route"></i></div>
+                <span class="service-tag">门至门</span>
+                <h3>小三通海运包清</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效10—12工作日</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 包清关，省心省力</li>
+                    <li><i class="fas fa-check-circle"></i> 两岸专线特惠</li>
+                </ul>
+            </div>
+            <!-- 正贸普货空运 -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-cargo-plane"></i></div>
+                <span class="service-tag">门/港多种</span>
+                <h3>正贸普货空运</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效3—5工作日</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 门至门/门至港/港至门/港至港</li>
+                    <li><i class="fas fa-check-circle"></i> 正式报关，合规可靠</li>
+                </ul>
+            </div>
+            <!-- 正贸普货海运 -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-anchor"></i></div>
+                <span class="service-tag">门/港多种</span>
+                <h3>正贸普货海运</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效10—12工作日</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 门至门/门至港/港至门/港至港</li>
+                    <li><i class="fas fa-check-circle"></i> 普货进出口首选</li>
+                </ul>
+            </div>
+            <!-- 国际快递代理 (突出DHL等) -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-globe-asia"></i></div>
+                <span class="service-tag">华东出口</span>
+                <h3>国际快递代理</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">DHL/UPS/FedEx/TNT/EMS</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 华东地区出口优惠</li>
+                    <li><i class="fas fa-check-circle"></i> 直送国外客户手中</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 增值服务模块 (使用文档内容) -->
+        <div class="value-added">
+            <h3><i class="fas fa-plus-circle" style="color:#004d99; margin-right: 8px;"></i> 增值服务</h3>
+            <p>提供一站式供应链配套，满足多样化贸易需求</p>
+            <div class="value-grid">
+                <span class="value-item"><i class="fas fa-file-export"></i> 出口报关</span>
+                <span class="value-item"><i class="fas fa-file-import"></i> 进口报关</span>
+                <span class="value-item"><i class="fas fa-coins"></i> 代收货款</span>
+                <span class="value-item"><i class="fas fa-hand-holding-usd"></i> 代付货款</span>
+                <span class="value-item"><i class="fas fa-flask"></i> 代做运输检测报告</span>
+                <span class="value-item"><i class="fas fa-truck"></i> 运费到付</span>
+                <span class="value-item"><i class="fas fa-search"></i> 货物查验</span>
+                <span class="value-item"><i class="fas fa-tag"></i> 更换标签</span>
+                <span class="value-item"><i class="fas fa-box"></i> 货物包装</span>
+                <span class="value-item"><i class="fas fa-pallet"></i> 货物集运</span>
+                <span class="value-item"><i class="fas fa-warehouse"></i> 国内仓储分拨</span>
+            </div>
+        </div>
+
+        <!-- 国际代理与专线 (参考德邦行业解决方案风格) -->
+        <div class="intl-section">
+            <div class="intl-left">
+                <h3><i class="fas fa-building" style="color:#004d99; margin-right: 8px;"></i> 国际快递代理</h3>
+                <p>经华东地区出口的 DHL、UPS、FedEx、TNT、EMS 国际快件，享受协议折扣，可上门取件。</p>
+                <div class="brand-logos">
+                    <span>DHL</span>
+                    <span>UPS</span>
+                    <span>FedEx</span>
+                    <span>TNT</span>
+                    <span>EMS</span>
+                </div>
+            </div>
+            <div class="intl-right">
+                <h3><i class="fas fa-map-marked-alt" style="color:#004d99; margin-right: 8px;"></i> 东南亚专线</h3>
+                <p>日本、韩国、新加坡、马来西亚、泰国、缅甸、越南等国家专线快件，不经过第三地，直送客户。</p>
+                <div class="country-list">
+                    <span>日本</span>
+                    <span>韩国</span>
+                    <span>新加坡</span>
+                    <span>马来西亚</span>
+                    <span>泰国</span>
+                    <span>缅甸</span>
+                    <span>越南</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 理念标语 -->
+        <div class="philosophy">
+            <h2>以诚博信 · 厚德载物</h2>
+            <p>—— 上海以诚货运代理有限公司 秉承的服务理念</p>
+        </div>
+
+        <!-- 联系信息与地址区块 (完整信息) -->
+        <div class="contact-section">
+            <div class="contact-info-block">
+                <h3><i class="fas fa-address-card" style="color:#004d99; margin-right: 10px;"></i> 联系我们</h3>
+                <div class="info-line">
+                    <i class="fas fa-building"></i>
+                    <span>上海以诚货运代理有限公司</span>
+                </div>
+                <div class="info-line">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>上海市青浦区香花桥街道郊一村718号3栋1层A-01库</span>
+                </div>
+                <div class="info-line">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>159-2182-9615 ／ 180-1974-8616 ／ 021-64880590</span>
+                </div>
+                <div class="info-line">
+                    <i class="fab fa-weixin"></i>
+                    <span>微信：gongcheng1974</span>
+                </div>
+                <div class="info-line">
+                    <i class="fab fa-qq"></i>
+                    <span>QQ：390546032</span>
+                </div>
+                <div class="info-line">
+                    <i class="fas fa-envelope"></i>
+                    <span>15921829615@163.com</span>
+                </div>
+            </div>
+            <div class="contact-person">
+                <h4>业务联系人</h4>
+                <div class="contact-row">
+                    <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-user-circle"></i></div>
+                    <div class="contact-detail">
+                        <p>龚成先生</p>
+                        <p style="font-weight: 400; font-size:0.9rem;">资深货运顾问</p>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="contact-detail">
+                        <p>手机 / 微信</p>
+                        <p>159-2182-9615</p>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-clock"></i></div>
+                    <div class="contact-detail">
+                        <p>服务时间</p>
+                        <p>周一至周六 9:00-18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 上海以诚货运代理有限公司 ｜ 两岸物流 · 专业货代 ｜ 沪ICP备XXXXXXXX号</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;">本页面为参考设计，信息以实际官方为准。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
