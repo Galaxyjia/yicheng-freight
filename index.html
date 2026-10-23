@@ -885,7 +885,7 @@
                     </button>
                     <div class="lang-dropdown">
                         <div class="lang-option active" data-lang="zh-TW">繁體中文</div>
-                        <div class="lang-option" data-lang="zh-CN">简体中文</div>
+                        <div class="lang-option" data-lang="zh-CN">簡體中文</div>
                         <div class="lang-option" data-lang="en">English</div>
                     </div>
                 </div>
@@ -1403,9 +1403,18 @@
 
         /* ============ i18n 核心 ============ */
         var LANGS = {
-            'zh-TW': { label: '繁', full: '繁體中文' },
-            'zh-CN': { label: '简', full: '简体中文' },
-            'en':    { label: 'EN', full: 'English' }
+            'zh-TW': {
+                label: '繁',
+                names: { 'zh-TW': '繁體中文', 'zh-CN': '簡體中文', 'en': 'English' }
+            },
+            'zh-CN': {
+                label: '简',
+                names: { 'zh-TW': '繁体中文', 'zh-CN': '简体中文', 'en': 'English' }
+            },
+            'en': {
+                label: 'EN',
+                names: { 'zh-TW': 'Traditional Chinese', 'zh-CN': 'Simplified Chinese', 'en': 'English' }
+            }
         };
         var DEFAULT = 'zh-TW';
         var STORAGE_KEY = 'yc-lang';
@@ -1440,7 +1449,9 @@
             if (curEl) curEl.textContent = LANGS[lang].label;
 
             document.querySelectorAll('.lang-option').forEach(function (opt) {
-                opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+                var optLang = opt.getAttribute('data-lang');
+                opt.classList.toggle('active', optLang === lang);
+                if (LANGS[lang].names[optLang]) opt.textContent = LANGS[lang].names[optLang];
             });
 
             try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
