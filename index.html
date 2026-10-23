@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上海以诚货运代理有限公司 · 两岸物流专家</title>
+    <title data-i18n="meta.title">上海以誠貨運代理有限公司 · 兩岸物流專家</title>
     <!-- Font Awesome 5 图标库 (用于图标装饰) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -757,6 +757,76 @@
             display: block;
         }
 
+        /* 语言切换器 */
+        .lang-switch {
+            position: relative;
+            margin-left: 8px;
+        }
+        .lang-switch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 40px;
+            border: 1px solid #d9e5f0;
+            background: white;
+            color: #0a1e33;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .lang-switch-btn:hover {
+            border-color: #004d99;
+            color: #004d99;
+        }
+        .lang-switch-btn .lang-caret {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: white;
+            border: 1px solid #e5eef7;
+            border-radius: 10px;
+            box-shadow: 0 10px 24px -8px rgba(0, 50, 100, 0.15);
+            min-width: 108px;
+            z-index: 200;
+            overflow: hidden;
+        }
+        .lang-switch.open .lang-dropdown {
+            display: block;
+        }
+        .lang-option {
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #1e2b3c;
+            cursor: pointer;
+            font-weight: 500;
+            display: block;
+        }
+        .lang-option:hover {
+            background: #eef5ff;
+            color: #004d99;
+        }
+        .lang-option.active {
+            background: #e1efff;
+            color: #004d99;
+            font-weight: 700;
+        }
+
+        /* 根据语言切换字体 */
+        html[lang="zh-TW"], html[lang="zh-CN"] {
+            font-family: system-ui, -apple-system, 'PingFang TC', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK TC', 'Noto Sans CJK SC', sans-serif;
+        }
+        html[lang="en"] {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+
         @media (max-width: 640px) {
             .carrier-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -770,6 +840,19 @@
             .track-box {
                 padding: 24px 18px;
             }
+            .nav-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .btn-outline, .btn-solid {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+            .lang-switch-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -779,22 +862,33 @@
     <header class="navbar">
         <div class="container nav-inner">
             <div class="logo-area">
-                <img class="logo-icon" src="logo.jpg" alt="以诚货运">
+                <img class="logo-icon" src="logo.jpg" alt="以誠貨運" data-i18n-placeholder="nav.logo_alt">
                 <div>
-                    <div class="logo-text">以诚货运</div>
-                    <span class="logo-sub">两岸物流 · 门到门</span>
+                    <div class="logo-text" data-i18n="nav.company">上海以誠貨運</div>
+                    <span class="logo-sub" data-i18n="nav.tagline">兩岸物流 · 門到門</span>
                 </div>
             </div>
             <div class="nav-links">
-                <a href="#">首页</a>
-                <a href="#">产品与服务</a>
-                <a href="#">增值服务</a>
-                <a href="#">国际专线</a>
-                <a href="#">关于我们</a>
+                <a href="#" data-i18n="nav.home">首頁</a>
+                <a href="#" data-i18n="nav.product">產品與服務</a>
+                <a href="#" data-i18n="nav.value">增值服務</a>
+                <a href="#" data-i18n="nav.intl">國際專線</a>
+                <a href="#" data-i18n="nav.about">關於我們</a>
             </div>
             <div class="nav-actions">
-                <span class="btn-outline">查运价</span>
-                <span class="btn-solid">我要寄件</span>
+                <span class="btn-outline" data-i18n="nav.check_rate">查運價</span>
+                <span class="btn-solid" data-i18n="nav.send">我要寄件</span>
+                <div class="lang-switch" id="langSwitch">
+                    <button class="lang-switch-btn" id="langSwitchBtn" type="button">
+                        <span id="langCurrent">繁</span>
+                        <span class="lang-caret">▾</span>
+                    </button>
+                    <div class="lang-dropdown">
+                        <div class="lang-option active" data-lang="zh-TW">繁體中文</div>
+                        <div class="lang-option" data-lang="zh-CN">简体中文</div>
+                        <div class="lang-option" data-lang="en">English</div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -803,55 +897,55 @@
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="hero-badge"><i class="fas fa-ship" style="margin-right: 6px;"></i> 两岸多渠道物流 · 专业货代</span>
+                <span class="hero-badge" data-i18n="hero.badge"><i class="fas fa-ship" style="margin-right: 6px;"></i> 兩岸多渠道物流 · 專業貨代</span>
                 <h1>
-                    以诚博信 <br>
-                    <span class="hero-highlight">厚德载物</span>
+                    <span data-i18n="hero.slogan1">以誠博信</span> <br>
+                    <span class="hero-highlight" data-i18n="hero.slogan2">厚德載物</span>
                 </h1>
-                <p class="hero-desc">
-                    上海以诚货运代理有限公司成立于2010年，专注两岸物流服务。提供空运快件、海运快件、小三通、正贸普货等多元化门到门解决方案，时效稳定，清关便捷。
+                <p class="hero-desc" data-i18n="hero.desc">
+                    上海以誠貨運代理有限公司成立於2010年，專注兩岸物流服務。提供空運快件、海運快件、小三通、正貿普貨等多元化門到門解決方案，時效穩定，清關便捷。
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <h3>2-4<span style="font-size:1rem;">天</span></h3>
-                        <p>空运快件</p>
+                        <h3>2-4<span style="font-size:1rem;" data-i18n="hero.days">天</span></h3>
+                        <p data-i18n="hero.service.air">空運快件</p>
                     </div>
                     <div class="stat-item">
-                        <h3>5-8<span style="font-size:1rem;">天</span></h3>
-                        <p>海运快件</p>
+                        <h3>5-8<span style="font-size:1rem;" data-i18n="hero.days">天</span></h3>
+                        <p data-i18n="hero.service.sea">海運快件</p>
                     </div>
                     <div class="stat-item">
-                        <h3>10-12<span style="font-size:1rem;">天</span></h3>
-                        <p>小三通/正贸海运</p>
+                        <h3>10-12<span style="font-size:1rem;" data-i18n="hero.days">天</span></h3>
+                        <p data-i18n="hero.service.minisan">小三通 / 正貿海運</p>
                     </div>
                 </div>
             </div>
             <!-- 悬浮联系卡片，显示主要联系人 -->
             <div class="hero-card">
-                <h3><i class="fas fa-headset"></i> 快速联系</h3>
+                <h3><i class="fas fa-headset"></i> <span data-i18n="contact.quick">快速聯繫</span></h3>
                 <div class="contact-row">
                     <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
                     <div class="contact-detail">
-                        <p>联系人</p>
-                        <p>龚成先生</p>
+                        <p data-i18n="contact.person_label">聯繫人</p>
+                        <p>龔成先生</p>
                     </div>
                 </div>
                 <div class="contact-row">
                     <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                     <div class="contact-detail">
-                        <p>电话 / 微信同号</p>
+                        <p data-i18n="contact.phone_label">電話 / 微信同號</p>
                         <p>159-2182-9615</p>
                     </div>
                 </div>
                 <div class="contact-row">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <div class="contact-detail">
-                        <p>邮箱</p>
+                        <p data-i18n="contact.email_label">郵箱</p>
                         <p>15921829615@163.com</p>
                     </div>
                 </div>
                 <div style="font-size:0.8rem; color:#5b6f87; border-top:1px solid #e5eef7; padding-top:14px; margin-top:6px;">
-                    <i class="fas fa-map-pin"></i> 上海市青浦区香花桥街道郊一村718号3栋1层A-01库
+                    <i class="fas fa-map-pin"></i> 上海市青浦區香花橋街道郟一村718號3棟1層A-01庫
                 </div>
             </div>
         </div>
@@ -862,33 +956,33 @@
         <div class="container">
             <div class="track-box">
                 <div class="track-title">
-                    <h2><i class="fas fa-search-location" style="color:#004d99; margin-right:8px;"></i> 国际快递查询</h2>
-                    <p>选择快递公司，输入运单号，一键查询最新物流轨迹</p>
+                    <h2><i class="fas fa-search-location" style="color:#004d99; margin-right:8px;"></i> <span data-i18n="track.title">國際快遞查詢</span></h2>
+                    <p data-i18n="track.subtitle">選擇快遞公司，輸入運單號，一鍵查詢最新物流軌跡</p>
                 </div>
                 <div class="carrier-grid" id="carrierGrid">
                     <div class="carrier-card active" data-code="fedex">
                         <div class="carrier-logo fedex">FedEx</div>
-                        <div class="carrier-name">联邦快递</div>
+                        <div class="carrier-name" data-i18n="track.carrier.fedex">聯邦快遞</div>
                     </div>
                     <div class="carrier-card" data-code="ups">
                         <div class="carrier-logo ups">UPS</div>
-                        <div class="carrier-name">UPS 快递</div>
+                        <div class="carrier-name" data-i18n="track.carrier.ups">UPS 快遞</div>
                     </div>
                     <div class="carrier-card" data-code="dhl">
                         <div class="carrier-logo dhl">DHL</div>
-                        <div class="carrier-name">DHL 快递</div>
+                        <div class="carrier-name" data-i18n="track.carrier.dhl">DHL 快遞</div>
                     </div>
                     <div class="carrier-card" data-code="ems">
                         <div class="carrier-logo ems">EMS</div>
-                        <div class="carrier-name">EMS 特快专递</div>
+                        <div class="carrier-name" data-i18n="track.carrier.ems">EMS 特快專遞</div>
                     </div>
                 </div>
                 <div class="track-input-row">
-                    <input type="text" class="track-input" id="trackNumber" placeholder="请输入运单号" autocomplete="off">
-                    <button class="track-btn" id="trackBtn" onclick="doTrack()">查询物流</button>
+                    <input type="text" class="track-input" id="trackNumber" data-i18n-placeholder="track.placeholder" placeholder="請輸入運單號" autocomplete="off">
+                    <button class="track-btn" id="trackBtn" onclick="doTrack()" data-i18n="track.button">查詢物流</button>
                 </div>
                 <div class="track-error" id="trackError"></div>
-                <p class="track-hint"><i class="fas fa-info-circle"></i> 查询结果将通过快递100跳转到官方物流页面 · 支持 FedEx / UPS / DHL / EMS 国际运单</p>
+                <p class="track-hint"><i class="fas fa-info-circle"></i> <span data-i18n="track.hint">查詢結果將通過快遞100跳轉至官方物流頁面 · 支援 FedEx / UPS / DHL / EMS 國際運單</span></p>
             </div>
         </div>
     </section>
@@ -896,142 +990,138 @@
     <!-- 主要服务卡片 (根据文档物流方式) -->
     <div class="container">
         <div class="section-title">
-            <h2>核心物流服务</h2>
-            <p>门到门 / 门到港 / 港到门 / 港到港，灵活定制</p>
+            <h2 data-i18n="service.title">核心物流服務</h2>
+            <p data-i18n="service.subtitle">門到門 / 門到港 / 港到門 / 港到港，靈活定制</p>
         </div>
         <div class="service-grid">
-            <!-- 空运快件 -->
+            <!-- 空運快件 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-plane"></i></div>
-                <span class="service-tag">门至门</span>
-                <h3>空运快件</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效2—4工作日</p>
+                <span class="service-tag" data-i18n="service.tag.dom">門至門</span>
+                <h3 data-i18n="service.card1.title">空運快件</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card1.time">時效 2—4 工作日</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 快速清关，全程追踪</li>
-                    <li><i class="fas fa-check-circle"></i> 适合高价值、紧急货物</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card1.f1">快速清關，全程追蹤</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card1.f2">適合高價值、緊急貨物</span></li>
                 </ul>
             </div>
-            <!-- 海运快件 -->
+            <!-- 海運快件 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-ship"></i></div>
-                <span class="service-tag">门至门</span>
-                <h3>海运快件</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效5—8工作日</p>
+                <span class="service-tag" data-i18n="service.tag.dom">門至門</span>
+                <h3 data-i18n="service.card2.title">海運快件</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card2.time">時效 5—8 工作日</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 经济高效，仓位保证</li>
-                    <li><i class="fas fa-check-circle"></i> 适合大宗普货</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card2.f1">經濟高效，艙位保證</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card2.f2">適合大宗普貨</span></li>
                 </ul>
             </div>
-            <!-- 小三通海运包清 -->
+            <!-- 小三通海運包清 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-route"></i></div>
-                <span class="service-tag">门至门</span>
-                <h3>小三通海运包清</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效10—12工作日</p>
+                <span class="service-tag" data-i18n="service.tag.dom">門至門</span>
+                <h3 data-i18n="service.card3.title">小三通海運包清</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card3.time">時效 10—12 工作日</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 包清关，省心省力</li>
-                    <li><i class="fas fa-check-circle"></i> 两岸专线特惠</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card3.f1">包清關，省心省力</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card3.f2">兩岸專線特惠</span></li>
                 </ul>
             </div>
-            <!-- 正贸普货空运 -->
+            <!-- 正貿普貨空運 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-cargo-plane"></i></div>
-                <span class="service-tag">门/港多种</span>
-                <h3>正贸普货空运</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效3—5工作日</p>
+                <span class="service-tag" data-i18n="service.tag.multi">門/港多種</span>
+                <h3 data-i18n="service.card4.title">正貿普貨空運</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card4.time">時效 3—5 工作日</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 门至门/门至港/港至门/港至港</li>
-                    <li><i class="fas fa-check-circle"></i> 正式报关，合规可靠</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card4.f1">門至門 / 門至港 / 港至門 / 港至港</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card4.f2">正式報關，合規可靠</span></li>
                 </ul>
             </div>
-            <!-- 正贸普货海运 -->
+            <!-- 正貿普貨海運 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-anchor"></i></div>
-                <span class="service-tag">门/港多种</span>
-                <h3>正贸普货海运</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">时效10—12工作日</p>
+                <span class="service-tag" data-i18n="service.tag.multi">門/港多種</span>
+                <h3 data-i18n="service.card5.title">正貿普貨海運</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card5.time">時效 10—12 工作日</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 门至门/门至港/港至门/港至港</li>
-                    <li><i class="fas fa-check-circle"></i> 普货进出口首选</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card5.f1">門至門 / 門至港 / 港至門 / 港至港</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card5.f2">普貨進出口首選</span></li>
                 </ul>
             </div>
-            <!-- 国际快递代理 (突出DHL等) -->
+            <!-- 國際快遞代理 -->
             <div class="service-card">
                 <div class="service-icon"><i class="fas fa-globe-asia"></i></div>
-                <span class="service-tag">华东出口</span>
-                <h3>国际快递代理</h3>
-                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;">DHL/UPS/FedEx/TNT/EMS</p>
+                <span class="service-tag" data-i18n="service.tag.east">華東出口</span>
+                <h3 data-i18n="service.card6.title">國際快遞代理</h3>
+                <p style="font-size:0.9rem; color:#3d556b; margin-bottom:8px;" data-i18n="service.card6.time">DHL / UPS / FedEx / TNT / EMS</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 华东地区出口优惠</li>
-                    <li><i class="fas fa-check-circle"></i> 直送国外客户手中</li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card6.f1">華東地區出口優惠</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-i18n="service.card6.f2">直送國外客戶手中</span></li>
                 </ul>
             </div>
         </div>
 
-        <!-- 增值服务模块 (使用文档内容) -->
+        <!-- 增值服务模块 -->
         <div class="value-added">
-            <h3><i class="fas fa-plus-circle" style="color:#004d99; margin-right: 8px;"></i> 增值服务</h3>
-            <p>提供一站式供应链配套，满足多样化贸易需求</p>
+            <h3><i class="fas fa-plus-circle" style="color:#004d99; margin-right: 8px;"></i> <span data-i18n="value.title">增值服務</span></h3>
+            <p data-i18n="value.subtitle">提供一站式供應鏈配套，滿足多樣化貿易需求</p>
             <div class="value-grid">
-                <span class="value-item"><i class="fas fa-file-export"></i> 出口报关</span>
-                <span class="value-item"><i class="fas fa-file-import"></i> 进口报关</span>
-                <span class="value-item"><i class="fas fa-coins"></i> 代收货款</span>
-                <span class="value-item"><i class="fas fa-hand-holding-usd"></i> 代付货款</span>
-                <span class="value-item"><i class="fas fa-flask"></i> 代做运输检测报告</span>
-                <span class="value-item"><i class="fas fa-truck"></i> 运费到付</span>
-                <span class="value-item"><i class="fas fa-search"></i> 货物查验</span>
-                <span class="value-item"><i class="fas fa-tag"></i> 更换标签</span>
-                <span class="value-item"><i class="fas fa-box"></i> 货物包装</span>
-                <span class="value-item"><i class="fas fa-pallet"></i> 货物集运</span>
-                <span class="value-item"><i class="fas fa-warehouse"></i> 国内仓储分拨</span>
+                <span class="value-item" data-i18n="value.export_decl"><i class="fas fa-file-export"></i> 出口報關</span>
+                <span class="value-item" data-i18n="value.import_decl"><i class="fas fa-file-import"></i> 進口報關</span>
+                <span class="value-item" data-i18n="value.cod"><i class="fas fa-coins"></i> 代收貨款</span>
+                <span class="value-item" data-i18n="value.prepay"><i class="fas fa-hand-holding-usd"></i> 代付貨款</span>
+                <span class="value-item" data-i18n="value.inspection"><i class="fas fa-flask"></i> 代做運輸檢測報告</span>
+                <span class="value-item" data-i18n="value.freight_collect"><i class="fas fa-truck"></i> 運費到付</span>
+                <span class="value-item" data-i18n="value.check"><i class="fas fa-search"></i> 貨物查驗</span>
+                <span class="value-item" data-i18n="value.relabel"><i class="fas fa-tag"></i> 更換標籤</span>
+                <span class="value-item" data-i18n="value.package"><i class="fas fa-box"></i> 貨物包裝</span>
+                <span class="value-item" data-i18n="value.consolidate"><i class="fas fa-pallet"></i> 貨物集運</span>
+                <span class="value-item" data-i18n="value.warehouse"><i class="fas fa-warehouse"></i> 國內倉儲分撥</span>
             </div>
         </div>
 
-        <!-- 国际代理与专线 (参考德邦行业解决方案风格) -->
+        <!-- 國際代理與專線 -->
         <div class="intl-section">
             <div class="intl-left">
-                <h3><i class="fas fa-building" style="color:#004d99; margin-right: 8px;"></i> 国际快递代理</h3>
-                <p>经华东地区出口的 DHL、UPS、FedEx、TNT、EMS 国际快件，享受协议折扣，可上门取件。</p>
+                <h3><i class="fas fa-building" style="color:#004d99; margin-right: 8px;"></i> <span data-i18n="intl.agent.title">國際快遞代理</span></h3>
+                <p data-i18n="intl.agent.desc">經華東地區出口的 DHL、UPS、FedEx、TNT、EMS 國際快件，享受協議折扣，可上門取件。</p>
                 <div class="brand-logos">
-                    <span>DHL</span>
-                    <span>UPS</span>
-                    <span>FedEx</span>
-                    <span>TNT</span>
-                    <span>EMS</span>
+                    <span>DHL</span><span>UPS</span><span>FedEx</span><span>TNT</span><span>EMS</span>
                 </div>
             </div>
             <div class="intl-right">
-                <h3><i class="fas fa-map-marked-alt" style="color:#004d99; margin-right: 8px;"></i> 东南亚专线</h3>
-                <p>日本、韩国、新加坡、马来西亚、泰国、缅甸、越南等国家专线快件，不经过第三地，直送客户。</p>
+                <h3><i class="fas fa-map-marked-alt" style="color:#004d99; margin-right: 8px;"></i> <span data-i18n="intl.sea.title">東南亞專線</span></h3>
+                <p data-i18n="intl.sea.desc">日本、韓國、新加坡、馬來西亞、泰國、緬甸、越南等國家專線快件，不經過第三地，直送客戶。</p>
                 <div class="country-list">
-                    <span>日本</span>
-                    <span>韩国</span>
-                    <span>新加坡</span>
-                    <span>马来西亚</span>
-                    <span>泰国</span>
-                    <span>缅甸</span>
-                    <span>越南</span>
+                    <span data-i18n="intl.country.jp">日本</span>
+                    <span data-i18n="intl.country.kr">韓國</span>
+                    <span data-i18n="intl.country.sg">新加坡</span>
+                    <span data-i18n="intl.country.my">馬來西亞</span>
+                    <span data-i18n="intl.country.th">泰國</span>
+                    <span data-i18n="intl.country.mm">緬甸</span>
+                    <span data-i18n="intl.country.vn">越南</span>
                 </div>
             </div>
         </div>
 
-        <!-- 理念标语 -->
+        <!-- 理念標語 -->
         <div class="philosophy">
-            <h2>以诚博信 · 厚德载物</h2>
-            <p>—— 上海以诚货运代理有限公司 秉承的服务理念</p>
+            <h2 data-i18n="philosophy.title">以誠博信 · 厚德載物</h2>
+            <p data-i18n="philosophy.sub">—— 上海以誠貨運代理有限公司 秉承的服務理念</p>
         </div>
 
-        <!-- 联系信息与地址区块 (完整信息) -->
+        <!-- 聯繫資訊與地址區塊 -->
         <div class="contact-section">
             <div class="contact-info-block">
-                <h3><i class="fas fa-address-card" style="color:#004d99; margin-right: 10px;"></i> 联系我们</h3>
+                <h3><i class="fas fa-address-card" style="color:#004d99; margin-right: 10px;"></i> <span data-i18n="contact.title">聯繫我們</span></h3>
                 <div class="info-line">
                     <i class="fas fa-building"></i>
-                    <span>上海以诚货运代理有限公司</span>
+                    <span>上海以誠貨運代理有限公司</span>
                 </div>
                 <div class="info-line">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>上海市青浦区香花桥街道郊一村718号3栋1层A-01库</span>
+                    <span>上海市青浦區香花橋街道郟一村718號3棟1層A-01庫</span>
                 </div>
                 <div class="info-line">
                     <i class="fas fa-phone-alt"></i>
@@ -1039,7 +1129,7 @@
                 </div>
                 <div class="info-line">
                     <i class="fab fa-weixin"></i>
-                    <span>微信：gongcheng1974</span>
+                    <span data-i18n="contact.wechat">微信</span>：gongcheng1974
                 </div>
                 <div class="info-line">
                     <i class="fab fa-qq"></i>
@@ -1051,94 +1141,400 @@
                 </div>
             </div>
             <div class="contact-person">
-                <h4>业务联系人</h4>
+                <h4 data-i18n="contact.biz">業務聯繫人</h4>
                 <div class="contact-row">
                     <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-user-circle"></i></div>
                     <div class="contact-detail">
-                        <p>龚成先生</p>
-                        <p style="font-weight: 400; font-size:0.9rem;">资深货运顾问</p>
+                        <p>龔成先生</p>
+                        <p style="font-weight: 400; font-size:0.9rem;" data-i18n="contact.title_person">資深貨運顧問</p>
                     </div>
                 </div>
                 <div class="contact-row">
                     <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-mobile-alt"></i></div>
                     <div class="contact-detail">
-                        <p>手机 / 微信</p>
+                        <p data-i18n="contact.mobile">手機 / 微信</p>
                         <p>159-2182-9615</p>
                     </div>
                 </div>
                 <div class="contact-row">
                     <div class="contact-icon" style="background:#e1efff;"><i class="fas fa-clock"></i></div>
                     <div class="contact-detail">
-                        <p>服务时间</p>
-                        <p>周一至周六 9:00-18:00</p>
+                        <p data-i18n="contact.hours">服務時間</p>
+                        <p data-i18n="contact.hours_val">週一至週六 9:00-18:00</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 页脚 -->
+    <!-- 頁腳 -->
     <footer class="footer">
         <div class="container">
-            <p>© 2025 上海以诚货运代理有限公司 ｜ 两岸物流 · 专业货代 ｜ 沪ICP备XXXXXXXX号</p>
-            <p style="margin-top: 8px; font-size: 0.75rem;">本页面为参考设计，信息以实际官方为准。</p>
+            <p data-i18n="footer.copyright">© 2025 上海以誠貨運代理有限公司 ｜ 兩岸物流 · 專業貨代 ｜ 滬ICP備XXXXXXXX號</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;" data-i18n="footer.note">本頁面為參考設計，資訊以實際官方為準。</p>
         </div>
     </footer>
 
-    <!-- 快递查询逻辑 -->
+    <!-- 國際化 + 快遞查詢統一邏輯 -->
     <script>
-        (function () {
+    (function () {
+        'use strict';
+
+        /* ============ 翻譯字典 ============
+         * zh-TW 為基底（HTML 預設即為繁體），此處留空表示不覆蓋；
+         * zh-CN（簡體）與 en（英文）提供完整覆蓋。
+         */
+        var T = {
+            'zh-TW': {
+                // JS 動態提示文案
+                _js: {
+                    track_empty: '請輸入運單號',
+                    track_short: '運單號長度不足',
+                    track_invalid: '運單號格式不正確'
+                }
+            },
+            'zh-CN': {
+                'meta.title': '上海以诚货运代理有限公司 · 两岸物流专家',
+                'nav.company': '上海以诚货运',
+                'nav.tagline': '两岸物流 · 门到门',
+                'nav.home': '首页',
+                'nav.product': '产品与服务',
+                'nav.value': '增值服务',
+                'nav.intl': '国际专线',
+                'nav.about': '关于我们',
+                'nav.check_rate': '查运价',
+                'nav.send': '我要寄件',
+                'nav.logo_alt': '以诚货运',
+                'hero.badge': '两岸多渠道物流 · 专业货代',
+                'hero.slogan1': '以诚博信',
+                'hero.slogan2': '厚德载物',
+                'hero.desc': '上海以诚货运代理有限公司成立于2010年，专注两岸物流服务。提供空运快件、海运快件、小三通、正贸普货等多元化门到门解决方案，时效稳定，清关便捷。',
+                'hero.days': '天',
+                'hero.service.air': '空运快件',
+                'hero.service.sea': '海运快件',
+                'hero.service.minisan': '小三通 / 正贸海运',
+                'track.title': '国际快递查询',
+                'track.subtitle': '选择快递公司，输入运单号，一键查询最新物流轨迹',
+                'track.carrier.fedex': '联邦快递',
+                'track.carrier.ups': 'UPS 快递',
+                'track.carrier.dhl': 'DHL 快递',
+                'track.carrier.ems': 'EMS 特快专递',
+                'track.placeholder': '请输入运单号',
+                'track.button': '查询物流',
+                'track.hint': '查询结果将通过快递100跳转到官方物流页面 · 支持 FedEx / UPS / DHL / EMS 国际运单',
+                'service.title': '核心物流服务',
+                'service.subtitle': '门到门 / 门到港 / 港到门 / 港到港，灵活定制',
+                'service.tag.dom': '门至门',
+                'service.tag.multi': '门/港多种',
+                'service.tag.east': '华东出口',
+                'service.card1.title': '空运快件',
+                'service.card1.time': '时效 2—4 工作日',
+                'service.card1.f1': '快速清关，全程追踪',
+                'service.card1.f2': '适合高价值、紧急货物',
+                'service.card2.title': '海运快件',
+                'service.card2.time': '时效 5—8 工作日',
+                'service.card2.f1': '经济高效，仓位保证',
+                'service.card2.f2': '适合大宗普货',
+                'service.card3.title': '小三通海运包清',
+                'service.card3.time': '时效 10—12 工作日',
+                'service.card3.f1': '包清关，省心省力',
+                'service.card3.f2': '两岸专线特惠',
+                'service.card4.title': '正贸普货空运',
+                'service.card4.time': '时效 3—5 工作日',
+                'service.card4.f1': '门至门 / 门至港 / 港至门 / 港至港',
+                'service.card4.f2': '正式报关，合规可靠',
+                'service.card5.title': '正贸普货海运',
+                'service.card5.time': '时效 10—12 工作日',
+                'service.card5.f1': '门至门 / 门至港 / 港至门 / 港至港',
+                'service.card5.f2': '普货进出口首选',
+                'service.card6.title': '国际快递代理',
+                'service.card6.time': 'DHL / UPS / FedEx / TNT / EMS',
+                'service.card6.f1': '华东地区出口优惠',
+                'service.card6.f2': '直送国外客户手中',
+                'value.title': '增值服务',
+                'value.subtitle': '提供一站式供应链配套，满足多样化贸易需求',
+                'value.export_decl': '出口报关',
+                'value.import_decl': '进口报关',
+                'value.cod': '代收货款',
+                'value.prepay': '代付货款',
+                'value.inspection': '代做运输检测报告',
+                'value.freight_collect': '运费到付',
+                'value.check': '货物查验',
+                'value.relabel': '更换标签',
+                'value.package': '货物包装',
+                'value.consolidate': '货物集运',
+                'value.warehouse': '国内仓储分拨',
+                'intl.agent.title': '国际快递代理',
+                'intl.agent.desc': '经华东地区出口的 DHL、UPS、FedEx、TNT、EMS 国际快件，享受协议折扣，可上门取件。',
+                'intl.sea.title': '东南亚专线',
+                'intl.sea.desc': '日本、韩国、新加坡、马来西亚、泰国、缅甸、越南等国家专线快件，不经过第三地，直送客户。',
+                'intl.country.jp': '日本',
+                'intl.country.kr': '韩国',
+                'intl.country.sg': '新加坡',
+                'intl.country.my': '马来西亚',
+                'intl.country.th': '泰国',
+                'intl.country.mm': '缅甸',
+                'intl.country.vn': '越南',
+                'philosophy.title': '以诚博信 · 厚德载物',
+                'philosophy.sub': '—— 上海以诚货运代理有限公司 秉承的服务理念',
+                'contact.quick': '快速联系',
+                'contact.person_label': '联系人',
+                'contact.phone_label': '电话 / 微信同号',
+                'contact.email_label': '邮箱',
+                'contact.title': '联系我们',
+                'contact.wechat': '微信',
+                'contact.biz': '业务联系人',
+                'contact.title_person': '资深货运顾问',
+                'contact.mobile': '手机 / 微信',
+                'contact.hours': '服务时间',
+                'contact.hours_val': '周一至周六 9:00-18:00',
+                'footer.copyright': '© 2025 上海以诚货运代理有限公司 ｜ 两岸物流 · 专业货代 ｜ 沪ICP备XXXXXXXX号',
+                'footer.note': '本页面为参考设计，信息以实际官方为准。',
+                '_js': {
+                    track_empty: '请输入运单号',
+                    track_short: '运单号长度不足',
+                    track_invalid: '运单号格式不正确'
+                }
+            },
+            'en': {
+                'meta.title': 'Shanghai Yicheng Freight · Cross-Strait Logistics Expert',
+                'nav.company': 'Shanghai Yicheng Freight',
+                'nav.tagline': 'Cross-Strait Logistics · Door-to-Door',
+                'nav.home': 'Home',
+                'nav.product': 'Products & Services',
+                'nav.value': 'Value Added',
+                'nav.intl': 'Intl. Lines',
+                'nav.about': 'About Us',
+                'nav.check_rate': 'Get Quote',
+                'nav.send': 'Ship Now',
+                'nav.logo_alt': 'Yicheng Freight',
+                'hero.badge': 'Cross-Strait Multi-Channel Logistics · Professional Freight Forwarder',
+                'hero.slogan1': 'Sincerity & Trust',
+                'hero.slogan2': 'Integrity & Commitment',
+                'hero.desc': 'Shanghai Yicheng Freight Agency Co., Ltd., founded in 2010, specializes in cross-Strait logistics. Offering diversified door-to-door solutions including air freight, sea freight, Mini Three Links and formal trade cargo — stable transit and easy customs clearance.',
+                'hero.days': ' days',
+                'hero.service.air': 'Air Express',
+                'hero.service.sea': 'Sea Express',
+                'hero.service.minisan': 'Mini Three Links / Sea Freight',
+                'track.title': 'International Parcel Tracking',
+                'track.subtitle': 'Select a carrier, enter your tracking number, and check the latest shipment status in one click',
+                'track.carrier.fedex': 'FedEx',
+                'track.carrier.ups': 'UPS',
+                'track.carrier.dhl': 'DHL',
+                'track.carrier.ems': 'EMS',
+                'track.placeholder': 'Enter tracking number',
+                'track.button': 'Track',
+                'track.hint': 'Results open via Kuaidi100 on the official carrier page · Supports FedEx / UPS / DHL / EMS',
+                'service.title': 'Core Logistics Services',
+                'service.subtitle': 'Door-to-Door / Door-to-Port / Port-to-Door / Port-to-Port — fully customizable',
+                'service.tag.dom': 'Door-to-Door',
+                'service.tag.multi': 'Multiple Modes',
+                'service.tag.east': 'East China Export',
+                'service.card1.title': 'Air Express',
+                'service.card1.time': '2—4 business days',
+                'service.card1.f1': 'Fast customs clearance, full tracking',
+                'service.card1.f2': 'Ideal for high-value, urgent cargo',
+                'service.card2.title': 'Sea Express',
+                'service.card2.time': '5—8 business days',
+                'service.card2.f1': 'Cost-efficient, secured booking',
+                'service.card2.f2': 'Ideal for bulk general cargo',
+                'service.card3.title': 'Mini Three Links Sea Freight',
+                'service.card3.time': '10—12 business days',
+                'service.card3.f1': 'Inclusive customs clearance, worry-free',
+                'service.card3.f2': 'Special cross-Strait rates',
+                'service.card4.title': 'Formal Trade Air Cargo',
+                'service.card4.time': '3—5 business days',
+                'service.card4.f1': 'Door-to-Door / Door-to-Port / Port-to-Door / Port-to-Port',
+                'service.card4.f2': 'Formal declaration, fully compliant',
+                'service.card5.title': 'Formal Trade Sea Cargo',
+                'service.card5.time': '10—12 business days',
+                'service.card5.f1': 'Door-to-Door / Door-to-Port / Port-to-Door / Port-to-Port',
+                'service.card5.f2': 'First choice for import/export of general cargo',
+                'service.card6.title': 'International Express Agent',
+                'service.card6.time': 'DHL / UPS / FedEx / TNT / EMS',
+                'service.card6.f1': 'Discounted export rates from East China',
+                'service.card6.f2': 'Direct delivery to overseas customers',
+                'value.title': 'Value Added Services',
+                'value.subtitle': 'One-stop supply chain solutions to meet diverse trade needs',
+                'value.export_decl': 'Export Declaration',
+                'value.import_decl': 'Import Declaration',
+                'value.cod': 'Cash on Delivery',
+                'value.prepay': 'Payment on Behalf',
+                'value.inspection': 'Inspection Report',
+                'value.freight_collect': 'Freight Collect',
+                'value.check': 'Cargo Inspection',
+                'value.relabel': 'Relabeling',
+                'value.package': 'Cargo Packaging',
+                'value.consolidate': 'Cargo Consolidation',
+                'value.warehouse': 'Domestic Warehousing & Distribution',
+                'intl.agent.title': 'International Express Agent',
+                'intl.agent.desc': 'DHL, UPS, FedEx, TNT, EMS international express exported from East China — contract rates, door pickup available.',
+                'intl.sea.title': 'Southeast Asia Line',
+                'intl.sea.desc': 'Dedicated express lines to Japan, Korea, Singapore, Malaysia, Thailand, Myanmar, Vietnam — direct to your customer, no intermediate stops.',
+                'intl.country.jp': 'Japan',
+                'intl.country.kr': 'Korea',
+                'intl.country.sg': 'Singapore',
+                'intl.country.my': 'Malaysia',
+                'intl.country.th': 'Thailand',
+                'intl.country.mm': 'Myanmar',
+                'intl.country.vn': 'Vietnam',
+                'philosophy.title': 'Sincerity & Trust · Integrity & Commitment',
+                'philosophy.sub': '—— the service philosophy upheld by Shanghai Yicheng Freight Agency Co., Ltd.',
+                'contact.quick': 'Quick Contact',
+                'contact.person_label': 'Contact',
+                'contact.phone_label': 'Tel / WeChat',
+                'contact.email_label': 'Email',
+                'contact.title': 'Contact Us',
+                'contact.wechat': 'WeChat',
+                'contact.biz': 'Business Contact',
+                'contact.title_person': 'Senior Freight Consultant',
+                'contact.mobile': 'Mobile / WeChat',
+                'contact.hours': 'Business Hours',
+                'contact.hours_val': 'Mon—Sat 9:00-18:00',
+                'footer.copyright': '© 2025 Shanghai Yicheng Freight Agency Co., Ltd. ｜ Cross-Strait Logistics · Professional Forwarder',
+                'footer.note': 'This page is a design reference. Information subject to the official website.',
+                '_js': {
+                    track_empty: 'Please enter a tracking number',
+                    track_short: 'Tracking number is too short',
+                    track_invalid: 'Invalid tracking number format'
+                }
+            }
+        };
+
+        /* ============ i18n 核心 ============ */
+        var LANGS = {
+            'zh-TW': { label: '繁', full: '繁體中文' },
+            'zh-CN': { label: '简', full: '简体中文' },
+            'en':    { label: 'EN', full: 'English' }
+        };
+        var DEFAULT = 'zh-TW';
+        var STORAGE_KEY = 'yc-lang';
+        var currentLang = DEFAULT;
+
+        function applyLang(lang) {
+            if (!T[lang]) lang = DEFAULT;
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // 套用 data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(function (el) {
+                var key = el.getAttribute('data-i18n');
+                var val = T[lang][key];
+                if (val !== undefined) el.textContent = val;
+            });
+            // placeholder
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                var val = T[lang][key];
+                if (val !== undefined) el.setAttribute('placeholder', val);
+            });
+            // alt
+            document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+                var key = el.getAttribute('data-i18n-alt');
+                var val = T[lang][key];
+                if (val !== undefined) el.setAttribute('alt', val);
+            });
+
+            // 更新切換器顯示
+            var curEl = document.getElementById('langCurrent');
+            if (curEl) curEl.textContent = LANGS[lang].label;
+
+            document.querySelectorAll('.lang-option').forEach(function (opt) {
+                opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+            });
+
+            try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+        }
+
+        function initLang() {
+            var saved = null;
+            try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+            if (saved && T[saved]) {
+                applyLang(saved);
+            } else {
+                applyLang(DEFAULT);
+            }
+        }
+
+        /* ============ 語言切換下拉 ============ */
+        (function setupLangSwitch() {
+            var wrap = document.getElementById('langSwitch');
+            var btn = document.getElementById('langSwitchBtn');
+            if (!wrap || !btn) return;
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                wrap.classList.toggle('open');
+            });
+            document.addEventListener('click', function () {
+                wrap.classList.remove('open');
+            });
+            document.querySelectorAll('.lang-option').forEach(function (opt) {
+                opt.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    applyLang(opt.getAttribute('data-lang'));
+                    wrap.classList.remove('open');
+                });
+            });
+        })();
+
+        /* ============ 快遞查詢 ============ */
+        (function setupTracker() {
             var selectedCode = 'fedex';
             var carrierCards = document.querySelectorAll('.carrier-card');
             var input = document.getElementById('trackNumber');
             var errorBox = document.getElementById('trackError');
 
-            // 选择快递公司
             carrierCards.forEach(function (card) {
                 card.addEventListener('click', function () {
                     carrierCards.forEach(function (c) { c.classList.remove('active'); });
                     card.classList.add('active');
                     selectedCode = card.getAttribute('data-code');
                     hideError();
-                    input.focus();
+                    if (input) input.focus();
                 });
             });
 
-            // 回车查询
-            input.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter') doTrack();
-            });
+            if (input) {
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') doTrack();
+                });
+            }
 
             function showError(msg) {
+                if (!errorBox) return;
                 errorBox.textContent = msg;
                 errorBox.classList.add('show');
             }
-
             function hideError() {
+                if (!errorBox) return;
                 errorBox.classList.remove('show');
             }
+            function jsT(key) {
+                var dict = T[currentLang] || T[DEFAULT];
+                return (dict._js && dict._js[key]) || (T[DEFAULT]._js[key] || '');
+            }
 
-            // 单号基本校验：只允许字母、数字、连字符、空格
             function validateNumber(num) {
-                if (!num) return '请输入运单号';
-                if (num.length < 5) return '运单号长度不足';
-                if (!/^[A-Za-z0-9\-\s]+$/.test(num)) return '运单号格式不正确';
+                if (!num) return jsT('track_empty');
+                if (num.length < 5) return jsT('track_short');
+                if (!/^[A-Za-z0-9\-\s]+$/.test(num)) return jsT('track_invalid');
                 return '';
             }
 
-            // 暴露到全局供 onclick 调用
             window.doTrack = function () {
                 var num = input.value.trim();
                 var err = validateNumber(num);
-                if (err) {
-                    showError(err);
-                    return;
-                }
+                if (err) { showError(err); return; }
                 hideError();
                 var url = 'https://www.kuaidi100.com/chaxun?com=' + encodeURIComponent(selectedCode) + '&nu=' + encodeURIComponent(num);
                 window.open(url, '_blank');
             };
         })();
+
+        /* ============ 啟動 ============ */
+        initLang();
+    })();
     </script>
 
 </body>
