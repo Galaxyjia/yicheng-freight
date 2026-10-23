@@ -603,6 +603,177 @@
                 padding: 24px 18px;
             }
         }
+
+        /* ============ 快递查询模块 ============ */
+        .track-section {
+            padding: 40px 0;
+            background: linear-gradient(180deg, #f5f8fc 0%, #ffffff 100%);
+        }
+
+        .track-box {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px -10px rgba(0, 77, 153, 0.15);
+            border: 1px solid #e5eef7;
+        }
+
+        .track-title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .track-title h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0a1e33;
+            margin-bottom: 8px;
+        }
+
+        .track-title p {
+            color: #5b6f87;
+            font-size: 0.95rem;
+        }
+
+        .carrier-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .carrier-card {
+            background: #f7faff;
+            border: 2px solid #e5eef7;
+            border-radius: 16px;
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .carrier-card:hover {
+            border-color: #9bc0e8;
+            background: #eef5ff;
+            transform: translateY(-2px);
+        }
+
+        .carrier-card.active {
+            border-color: #004d99;
+            background: #e1efff;
+            box-shadow: 0 6px 16px rgba(0, 77, 153, 0.12);
+        }
+
+        .carrier-card.active .carrier-name {
+            color: #004d99;
+        }
+
+        .carrier-logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .carrier-logo.fedex { color: #003373; }
+        .carrier-logo.ups { color: #8d6e00; }
+        .carrier-logo.dhl { color: #d40511; }
+        .carrier-logo.ems { color: #c8102e; }
+
+        .carrier-name {
+            font-size: 0.85rem;
+            color: #5b6f87;
+            font-weight: 500;
+        }
+
+        .track-input-row {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .track-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d9e5f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .track-input:focus {
+            border-color: #004d99;
+        }
+
+        .track-input::placeholder {
+            color: #9db0c7;
+        }
+
+        .track-btn {
+            background: #004d99;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .track-btn:hover {
+            background: #003b7a;
+            box-shadow: 0 4px 14px rgba(0, 77, 153, 0.3);
+        }
+
+        .track-btn:disabled {
+            background: #a8b8ca;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .track-hint {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: #6b7f96;
+            text-align: center;
+        }
+
+        .track-error {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fff2f2;
+            border: 1px solid #ffd4d4;
+            color: #c0392b;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .track-error.show {
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .carrier-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .track-input-row {
+                flex-direction: column;
+            }
+            .track-btn {
+                width: 100%;
+            }
+            .track-box {
+                padding: 24px 18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -685,6 +856,42 @@
                 <div style="font-size:0.8rem; color:#5b6f87; border-top:1px solid #e5eef7; padding-top:14px; margin-top:6px;">
                     <i class="fas fa-map-pin"></i> 上海市青浦区香花桥街道郊一村718号3栋1层A-01库
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快递查询 -->
+    <section class="track-section">
+        <div class="container">
+            <div class="track-box">
+                <div class="track-title">
+                    <h2><i class="fas fa-search-location" style="color:#004d99; margin-right:8px;"></i> 国际快递查询</h2>
+                    <p>选择快递公司，输入运单号，一键查询最新物流轨迹</p>
+                </div>
+                <div class="carrier-grid" id="carrierGrid">
+                    <div class="carrier-card active" data-code="fedex">
+                        <div class="carrier-logo fedex">FedEx</div>
+                        <div class="carrier-name">联邦快递</div>
+                    </div>
+                    <div class="carrier-card" data-code="ups">
+                        <div class="carrier-logo ups">UPS</div>
+                        <div class="carrier-name">UPS 快递</div>
+                    </div>
+                    <div class="carrier-card" data-code="dhl">
+                        <div class="carrier-logo dhl">DHL</div>
+                        <div class="carrier-name">DHL 快递</div>
+                    </div>
+                    <div class="carrier-card" data-code="ems">
+                        <div class="carrier-logo ems">EMS</div>
+                        <div class="carrier-name">EMS 特快专递</div>
+                    </div>
+                </div>
+                <div class="track-input-row">
+                    <input type="text" class="track-input" id="trackNumber" placeholder="请输入运单号" autocomplete="off">
+                    <button class="track-btn" id="trackBtn" onclick="doTrack()">查询物流</button>
+                </div>
+                <div class="track-error" id="trackError"></div>
+                <p class="track-hint"><i class="fas fa-info-circle"></i> 查询结果将通过快递100跳转到官方物流页面 · 支持 FedEx / UPS / DHL / EMS 国际运单</p>
             </div>
         </div>
     </section>
@@ -880,6 +1087,62 @@
             <p style="margin-top: 8px; font-size: 0.75rem;">本页面为参考设计，信息以实际官方为准。</p>
         </div>
     </footer>
+
+    <!-- 快递查询逻辑 -->
+    <script>
+        (function () {
+            var selectedCode = 'fedex';
+            var carrierCards = document.querySelectorAll('.carrier-card');
+            var input = document.getElementById('trackNumber');
+            var errorBox = document.getElementById('trackError');
+
+            // 选择快递公司
+            carrierCards.forEach(function (card) {
+                card.addEventListener('click', function () {
+                    carrierCards.forEach(function (c) { c.classList.remove('active'); });
+                    card.classList.add('active');
+                    selectedCode = card.getAttribute('data-code');
+                    hideError();
+                    input.focus();
+                });
+            });
+
+            // 回车查询
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') doTrack();
+            });
+
+            function showError(msg) {
+                errorBox.textContent = msg;
+                errorBox.classList.add('show');
+            }
+
+            function hideError() {
+                errorBox.classList.remove('show');
+            }
+
+            // 单号基本校验：只允许字母、数字、连字符、空格
+            function validateNumber(num) {
+                if (!num) return '请输入运单号';
+                if (num.length < 5) return '运单号长度不足';
+                if (!/^[A-Za-z0-9\-\s]+$/.test(num)) return '运单号格式不正确';
+                return '';
+            }
+
+            // 暴露到全局供 onclick 调用
+            window.doTrack = function () {
+                var num = input.value.trim();
+                var err = validateNumber(num);
+                if (err) {
+                    showError(err);
+                    return;
+                }
+                hideError();
+                var url = 'https://www.kuaidi100.com/chaxun?com=' + encodeURIComponent(selectedCode) + '&nu=' + encodeURIComponent(num);
+                window.open(url, '_blank');
+            };
+        })();
+    </script>
 
 </body>
 </html>
